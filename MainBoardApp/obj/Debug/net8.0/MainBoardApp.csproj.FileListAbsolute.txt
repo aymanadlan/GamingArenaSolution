@@ -1,0 +1,15 @@
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\bin\Debug\net8.0\MainBoardApp.exe
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\bin\Debug\net8.0\MainBoardApp.deps.json
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\bin\Debug\net8.0\MainBoardApp.runtimeconfig.json
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\bin\Debug\net8.0\MainBoardApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\bin\Debug\net8.0\MainBoardApp.pdb
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.AssemblyInfoInputs.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.AssemblyInfo.cs
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.csproj.CoreCompileInputs.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.sourcelink.json
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\refint\MainBoardApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.pdb
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\MainBoardApp.genruntimeconfig.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\MainBoardApp\obj\Debug\net8.0\ref\MainBoardApp.dll

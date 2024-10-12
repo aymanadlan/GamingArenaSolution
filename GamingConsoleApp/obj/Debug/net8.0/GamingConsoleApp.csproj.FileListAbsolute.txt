@@ -1,0 +1,15 @@
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\bin\Debug\net8.0\GamingConsoleApp.exe
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\bin\Debug\net8.0\GamingConsoleApp.deps.json
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\bin\Debug\net8.0\GamingConsoleApp.runtimeconfig.json
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\bin\Debug\net8.0\GamingConsoleApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\bin\Debug\net8.0\GamingConsoleApp.pdb
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.AssemblyInfoInputs.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.AssemblyInfo.cs
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.sourcelink.json
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\refint\GamingConsoleApp.dll
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.pdb
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\GamingConsoleApp.genruntimeconfig.cache
+C:\Users\ayman\source\repos\GamingArenaSolution\GamingConsoleApp\obj\Debug\net8.0\ref\GamingConsoleApp.dll
