@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{047E7DD7-0F48-4A86-8BE2-122D04FD0139}|MainBoardApp\\MainBoardApp.csproj|c:\\users\\ayman\\source\\repos\\gamingarenasolution\\mainboardapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{047E7DD7-0F48-4A86-8BE2-122D04FD0139}|MainBoardApp\\MainBoardApp.csproj|solutionrelative:mainboardapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|c:\\users\\ayman\\source\\repos\\gamingarenasolution\\gamingconsoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|solutionrelative:gamingconsoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|c:\\users\\ayman\\source\\repos\\gamingarenasolution\\gamingconsoleapp\\oldconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|solutionrelative:gamingconsoleapp\\oldconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|c:\\users\\ayman\\source\\repos\\gamingarenasolution\\gamingconsoleapp\\newconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56A3FCF6-F1D4-4C89-8CAD-5F32948D2C65}|GamingConsoleApp\\GamingConsoleApp.csproj|solutionrelative:gamingconsoleapp\\newconsole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +26,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 76,
+          "SelectedChildIndex": 80,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:187:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -322,15 +338,51 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "NewConsole.cs",
+              "DocumentMoniker": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\NewConsole.cs",
+              "RelativeDocumentMoniker": "GamingConsoleApp\\NewConsole.cs",
+              "ToolTip": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\NewConsole.cs",
+              "RelativeToolTip": "GamingConsoleApp\\NewConsole.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T09:40:50.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OldConsole.cs",
+              "DocumentMoniker": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\OldConsole.cs",
+              "RelativeDocumentMoniker": "GamingConsoleApp\\OldConsole.cs",
+              "ToolTip": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\OldConsole.cs",
+              "RelativeToolTip": "GamingConsoleApp\\OldConsole.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAgwFMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T09:34:26.935Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\Program.cs",
               "RelativeDocumentMoniker": "GamingConsoleApp\\Program.cs",
               "ToolTip": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\GamingConsoleApp\\Program.cs",
               "RelativeToolTip": "GamingConsoleApp\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAyAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAA3wBgAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T12:58:08.004Z",
+              "WhenOpened": "2024-10-13T09:01:12.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\MainBoardApp\\Program.cs",
+              "RelativeDocumentMoniker": "MainBoardApp\\Program.cs",
+              "ToolTip": "C:\\Users\\ayman\\source\\repos\\GamingArenaSolution\\MainBoardApp\\Program.cs",
+              "RelativeToolTip": "MainBoardApp\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T08:55:16.367Z",
               "EditorCaption": ""
             }
           ]
