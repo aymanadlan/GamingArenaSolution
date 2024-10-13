@@ -27,7 +27,11 @@ namespace GamingConsoleApp
             IsRunning = true;
             Console.WriteLine($"New Console {ConsoleNumber} started for {PlayerName}. Status: Running");
 
-            ConnectToMainBoard();
+            if (ConnectToMainBoard())
+            {
+                // Immediately send the initial data to the MainBoard after connecting
+                SendUpdateToMainBoard();
+            }
 
             while (IsRunning)
             {
@@ -63,17 +67,19 @@ namespace GamingConsoleApp
             tcpClient?.Close();
         }
 
-        private void ConnectToMainBoard()
+        private bool ConnectToMainBoard()
         {
             try
             {
                 tcpClient.Connect("localhost", 5000);
                 stream = tcpClient.GetStream();
                 Console.WriteLine("Connected to MainBoard.");
+                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error connecting to MainBoard: {ex.Message}");
+                return false;
             }
         }
 
@@ -120,6 +126,14 @@ namespace GamingConsoleApp
                     Console.WriteLine($"Error sending data: {ex.Message}");
                 }
             }
+        }
+
+        private class ConsoleData
+        {
+            public int ConsoleNumber { get; set; }
+            public string PlayerName { get; set; }
+            public int Score { get; set; }
+            public string Status { get; set; }
         }
     }
 }
