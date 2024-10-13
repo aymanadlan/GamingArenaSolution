@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 
@@ -78,7 +79,7 @@ namespace GamingConsoleApp
 
         private void SendUpdateToMainBoard()
         {
-            var data = new
+            var data = new ConsoleData
             {
                 ConsoleNumber = ConsoleNumber,
                 PlayerName = PlayerName,
@@ -91,7 +92,7 @@ namespace GamingConsoleApp
 
         private void SendStopToMainBoard()
         {
-            var data = new
+            var data = new ConsoleData
             {
                 ConsoleNumber = ConsoleNumber,
                 PlayerName = PlayerName,
@@ -102,7 +103,7 @@ namespace GamingConsoleApp
             SendData(data);
         }
 
-        private void SendData(object data)
+        private void SendData(ConsoleData data)
         {
             if (stream != null)
             {

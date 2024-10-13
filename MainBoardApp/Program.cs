@@ -1,69 +1,169 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MainBoardApp
 {
     public class MainBoard
     {
-        private TcpListener tcpListener;
         private Dictionary<int, ConsoleData> scoreboard;
+        private List<int> oldConsoleNumbers;
+        private bool running;
+        private TcpListener tcpListener;
 
         public MainBoard()
         {
-            // Listen on any IP address on port 5000
-            tcpListener = new TcpListener(IPAddress.Any, 5000);
             scoreboard = new Dictionary<int, ConsoleData>();
+            oldConsoleNumbers = new List<int>();
+            running = true;
+            tcpListener = new TcpListener(IPAddress.Any, 5000);
         }
 
         public void Start()
         {
-            tcpListener.Start();
             Console.WriteLine("MainBoard started. Waiting for consoles to connect...");
 
-            while (true)
-            {
-                TcpClient client = tcpListener.AcceptTcpClient();
-                Console.WriteLine("Console connected.");
+            // Start TCP listener in a separate thread for new consoles
+            Thread tcpListenerThread = new Thread(StartTcpListener);
+            tcpListenerThread.IsBackground = true;
+            tcpListenerThread.Start();
 
-                // Handle the client in a separate thread
-                Thread clientThread = new Thread(() => HandleClient(client));
-                clientThread.Start();
+            // Start polling old consoles in a separate thread
+            Thread pollingThread = new Thread(() => PollOldConsoles());
+            pollingThread.IsBackground = true;
+            pollingThread.Start();
+
+            // Keep the application running until manually stopped
+            while (running)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+
+        private void StartTcpListener()
+        {
+            tcpListener.Start();
+            Console.WriteLine("TCP listener started on port 5000.");
+
+            while (running)
+            {
+                try
+                {
+                    var client = tcpListener.AcceptTcpClient();
+                    Thread clientThread = new Thread(() => HandleClient(client));
+                    clientThread.Start();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error in TCP listener: {ex.Message}");
+                }
             }
         }
 
         private void HandleClient(TcpClient client)
         {
-            NetworkStream stream = client.GetStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+            try
             {
-                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Console.WriteLine($"Received data: {message}");
-
-                // Parse the message and update the scoreboard
-                var consoleData = JsonSerializer.Deserialize<ConsoleData>(message);
-                if (consoleData != null)
+                using (var stream = client.GetStream())
                 {
-                    UpdateScoreboard(consoleData);
+                    byte[] buffer = new byte[1024];
+                    int bytesRead = stream.Read(buffer, 0, buffer.Length);
+                    string json = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+
+                    var consoleData = JsonSerializer.Deserialize<ConsoleData>(json);
+
+                    if (consoleData != null)
+                    {
+                        UpdateScoreboard(consoleData);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error handling client: {ex.Message}");
+            }
+        }
 
-            client.Close();
+        public void RegisterOldConsole(int consoleNumber)
+        {
+            oldConsoleNumbers.Add(consoleNumber);
+            Console.WriteLine($"Registered Old Console {consoleNumber}");
+
+            // Initialize the console data with "Running" status
+            UpdateScoreboard(new ConsoleData
+            {
+                ConsoleNumber = consoleNumber,
+                PlayerName = $"Player{consoleNumber}",
+                Score = 0,
+                Status = "Running"
+            });
+        }
+
+        private async void PollOldConsoles()
+        {
+            while (running)
+            {
+                foreach (var consoleNumber in oldConsoleNumbers.ToList())
+                {
+                    await FetchDataFromOldConsole(consoleNumber);
+                }
+
+                Thread.Sleep(5000); // Poll every 5 seconds
+            }
+        }
+
+        private async Task FetchDataFromOldConsole(int consoleNumber)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string url = $"http://localhost:500{consoleNumber}/";
+                    HttpResponseMessage response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        var consoleData = JsonSerializer.Deserialize<ConsoleData>(jsonResponse);
+
+                        if (consoleData != null)
+                        {
+                            UpdateScoreboard(consoleData);
+                        }
+                    }
+                }
+            }
+            catch (HttpRequestException)
+            {
+                if (scoreboard.ContainsKey(consoleNumber) && scoreboard[consoleNumber].Status != "Stopped")
+                {
+                    UpdateScoreboard(new ConsoleData
+                    {
+                        ConsoleNumber = consoleNumber,
+                        PlayerName = scoreboard[consoleNumber].PlayerName,
+                        Score = scoreboard[consoleNumber].Score,
+                        Status = "Stopped"
+                    });
+
+                    Console.WriteLine($"Old Console {consoleNumber} stopped. No data received.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error fetching data from Old Console {consoleNumber}: {ex.Message}");
+            }
         }
 
         private void UpdateScoreboard(ConsoleData consoleData)
         {
-            // Update or add the console data in the scoreboard
             scoreboard[consoleData.ConsoleNumber] = consoleData;
 
-            // Display the current scoreboard sorted by score
             Console.WriteLine("Current Scoreboard:");
             foreach (var entry in scoreboard.OrderByDescending(c => c.Value.Score))
             {
@@ -83,6 +183,7 @@ namespace MainBoardApp
         static void Main(string[] args)
         {
             MainBoard mainBoard = new MainBoard();
+            mainBoard.RegisterOldConsole(1); // Register Old Console with ConsoleNumber = 1
             mainBoard.Start();
         }
     }

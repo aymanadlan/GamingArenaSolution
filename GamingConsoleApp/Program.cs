@@ -6,10 +6,9 @@ namespace GamingConsoleApp
     {
         static void Main(string[] args)
         {
-            if (args.Length < 3)
+            if (args.Length != 3)
             {
                 Console.WriteLine("Usage: GamingConsoleApp.exe <type> <ConsoleNumber> <PlayerName>");
-                Console.WriteLine("<type>: 'new' for New Console or 'old' for Old Console");
                 return;
             }
 
@@ -17,19 +16,22 @@ namespace GamingConsoleApp
             int consoleNumber = int.Parse(args[1]);
             string playerName = args[2];
 
-            if (type == "new")
+            if (type == "old")
             {
-                NewConsole console = new NewConsole(consoleNumber, playerName);
-                console.Start();
+                OldConsole oldConsole = new OldConsole(consoleNumber, playerName);
+                oldConsole.Start();
+                Console.WriteLine("Press any key to stop the console...");
+                Console.ReadKey();
+                oldConsole.Stop();
             }
-            else if (type == "old")
+            else if (type == "new")
             {
-                OldConsole console = new OldConsole(consoleNumber, playerName);
-                console.Start();
+                NewConsole newConsole = new NewConsole(consoleNumber, playerName);
+                newConsole.Start();
             }
             else
             {
-                Console.WriteLine("Invalid console type. Use 'new' or 'old'.");
+                Console.WriteLine("Invalid console type. Use 'old' or 'new'.");
             }
         }
     }

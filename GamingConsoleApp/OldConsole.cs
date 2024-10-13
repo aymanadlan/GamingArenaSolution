@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
@@ -8,11 +9,11 @@ namespace GamingConsoleApp
 {
     public class OldConsole
     {
-        private TcpListener tcpListener;
         public int ConsoleNumber { get; private set; }
         public string PlayerName { get; private set; }
         public int Score { get; private set; }
         public string Status { get; private set; }
+        private HttpListener httpListener;
 
         public OldConsole(int consoleNumber, string playerName)
         {
@@ -20,15 +21,16 @@ namespace GamingConsoleApp
             PlayerName = playerName;
             Score = 0;
             Status = "Stopped";
-            tcpListener = new TcpListener(IPAddress.Any, 5000 + consoleNumber); // Unique port for each console
+            httpListener = new HttpListener();
+            httpListener.Prefixes.Add($"http://localhost:500{consoleNumber}/");
         }
 
         public void Start()
         {
-            tcpListener.Start();
-            Console.WriteLine($"Old Console {ConsoleNumber} started for {PlayerName}. Status: {Status}");
+            Status = "Running";
+            httpListener.Start();
+            Console.WriteLine($"Old Console {ConsoleNumber} started for {PlayerName}.");
 
-            // Start listening for incoming requests
             Task.Run(() => ListenForRequests());
         }
 
@@ -36,48 +38,38 @@ namespace GamingConsoleApp
         {
             while (true)
             {
-                var client = await tcpListener.AcceptTcpClientAsync();
-                Console.WriteLine($"Old Console {ConsoleNumber} accepted a connection.");
-                HandleClient(client);
-            }
-        }
+                var context = await httpListener.GetContextAsync();
+                var response = context.Response;
 
-        private void HandleClient(TcpClient client)
-        {
-            using (var stream = client.GetStream())
-            {
-                byte[] buffer = new byte[1024];
-                int bytesRead = stream.Read(buffer, 0, buffer.Length);
-                string request = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Console.WriteLine($"Received request: {request}");
-
-                // Respond with current score and status
-                var response = new
+                // Prepare data as JSON
+                var consoleData = new
                 {
                     ConsoleNumber = ConsoleNumber,
                     PlayerName = PlayerName,
                     Score = Score,
                     Status = Status
                 };
-                var jsonResponse = JsonSerializer.Serialize(response);
-                byte[] responseData = Encoding.UTF8.GetBytes(jsonResponse);
-                stream.Write(responseData, 0, responseData.Length);
-            }
+                var jsonResponse = JsonSerializer.Serialize(consoleData);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonResponse);
 
-            client.Close();
+                // Send response
+                response.ContentLength64 = buffer.Length;
+                response.OutputStream.Write(buffer, 0, buffer.Length);
+                response.OutputStream.Close();
+            }
         }
 
         public void IncrementScore()
         {
             Score++;
-            Status = "Running";
+            Console.WriteLine($"Console {ConsoleNumber} Score: {Score}");
         }
 
         public void Stop()
         {
             Status = "Stopped";
             Console.WriteLine($"Old Console {ConsoleNumber} stopped. Final score: {Score}");
-            tcpListener.Stop();
+            httpListener.Stop();
         }
     }
 }

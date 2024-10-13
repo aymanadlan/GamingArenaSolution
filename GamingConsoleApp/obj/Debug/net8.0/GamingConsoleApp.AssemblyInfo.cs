@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GamingConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34fbd6580c58fa52e0c71e76af281a935aeffcaa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa62eff238ec84daa996254d8978279db2ebd980")]
 [assembly: System.Reflection.AssemblyProductAttribute("GamingConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GamingConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
